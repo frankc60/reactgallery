@@ -6,13 +6,14 @@ const UploadForm = () => {
 
   const changeHandler = (e) => {
     //
-    setError(null);
+
     const selected = e.target.files[0];
     console.log(selected);
 
     const type = ["image/png", "image/jpeg"];
 
     if (selected && type.includes(selected.type)) {
+      setError(null);
       setFile(selected);
     } else {
       setFile(null);
@@ -23,8 +24,8 @@ const UploadForm = () => {
   return (
     <div>
       <input type='file' onChange={changeHandler} />
-      {file ? file.name : null}
-      {error}
+      {file && <p>{file.name}</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 };
