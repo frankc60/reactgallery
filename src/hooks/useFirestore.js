@@ -4,6 +4,7 @@ import {
   onSnapshot,
   collection,
   query,
+  orderBy,
 } from "../firebase_stuff/config";
 
 const useFirestore = (collections) => {
@@ -12,7 +13,10 @@ const useFirestore = (collections) => {
   useEffect(() => {
     //import { collection, query, where, onSnapshot } from "firebase/firestore";
 
-    const q = query(collection(projectFirestore, collections));
+    const q = query(
+      collection(projectFirestore, collections),
+      orderBy("created", "desc")
+    );
     const unsub = onSnapshot(q, (snap) => {
       let documents = [];
       snap.forEach((doc) => {

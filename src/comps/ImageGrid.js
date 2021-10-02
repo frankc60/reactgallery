@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import useFirestore from "../hooks/useFirestore";
 
-const ImageGrid = () => {
+const ImageGrid = ({ setSelectedImage }) => {
   const { docs } = useFirestore("images");
   console.log(docs);
 
@@ -10,8 +11,12 @@ const ImageGrid = () => {
       {docs &&
         docs.map((image) => {
           return (
-            <div className='image-wrap' key={image.id}>
-              <img src={image.url} alt='created:{image.created}' />
+            <div
+              className='image-wrap'
+              key={image.id}
+              onClick={() => setSelectedImage(image.url)}
+            >
+              <img src={image.url} alt={image.created} />
             </div>
           );
         })}
