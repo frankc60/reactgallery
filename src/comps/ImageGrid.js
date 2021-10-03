@@ -3,9 +3,17 @@ import React from "react";
 import useFirestore from "../hooks/useFirestore";
 import { motion } from "framer-motion";
 
-const ImageGrid = ({ setSelectedImage }) => {
+const ImageGrid = ({ setSelectedImage, todelete, setDelitems }) => {
   const { docs } = useFirestore("images");
   console.log(docs);
+
+  const onImgClick = (image) => {
+    if (!todelete) {
+      setSelectedImage(image.url);
+    } else {
+      setDelitems(image);
+    }
+  };
 
   return (
     <div className='image-grid'>
@@ -17,7 +25,7 @@ const ImageGrid = ({ setSelectedImage }) => {
               layout
               className='image-wrap'
               key={image.id}
-              onClick={() => setSelectedImage(image.url)}
+              onClick={() => onImgClick(image)}
             >
               <motion.img
                 src={image.url}

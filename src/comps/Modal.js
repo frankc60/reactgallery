@@ -18,7 +18,7 @@ const Modal = ({ selectedImage, setSelectedImage }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <span class='modal-close'>&times;</span>
+      <span className='modal-close'>&times;</span>
       <motion.img
         src={selectedImage}
         alt=''

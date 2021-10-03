@@ -23,6 +23,7 @@ const useStorage = (file) => {
       const docRef = await addDoc(collection(db, "images"), {
         url: downloadurl,
         created: firebaseServerTime,
+        file: file.name,
       });
 
       console.log("Document written with ID: ", docRef.id);
